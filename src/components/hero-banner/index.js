@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { urlFor } from '../../lib/client'
 
 const HeroBanner = ({ heroBanner }) => {
-  console.log(heroBanner)
+  // console.log(heroBanner)
 
   const {
     buttonText,
