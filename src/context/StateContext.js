@@ -6,9 +6,9 @@ const Context = createContext()
 
 export const StateContext = ({ children }) => {
   const [showCart, setShowCart] = useState(false)
-  const [cartItems, setCartItems] = useState()
+  const [cartItems, setCartItems] = useState([])
   const [totalPrice, setTotalPrice] = useState(0)
-  const [totalQuantities, setTotalQuantities] = useState()
+  const [totalQuantities, setTotalQuantities] = useState(0)
   const [qty, setQty] = useState(1)
 
   const onAddCart = (product, quantity) => {
@@ -33,8 +33,7 @@ quantity. */
       })
       setCartItems(updatedCartItems)
     } else {
-
-    /* If the product is not in the cart, it will add the product to the cart. */
+      /* If the product is not in the cart, it will add the product to the cart. */
       product.quantity = quantity
 
       setCartItems([...cartItems, { ...product }])
@@ -65,6 +64,8 @@ quantity. */
         qty,
         incQty,
         decQty,
+        onAddCart,
+        setShowCart,
       }}
     >
       {children}
