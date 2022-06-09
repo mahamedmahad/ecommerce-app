@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { urlFor, client } from '../../lib/client'
 
@@ -14,21 +14,31 @@ import { Product } from '../../components'
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product
 
-  // console.log(products)
+  const [index, setIndex] = useState(0)
 
   return (
     <div>
       <div className='product-detail-container'>
         <div>
           <div className='image-container'>
-            <img src={urlFor(image && image[0])} />
+            <img
+              src={urlFor(image && image[index])}
+              className='product-detail-image'
+            />
           </div>
 
-          {/* <div className='small-images-container'>
-          {image?.map((item, i) => (
-            <img src={urlFor(item)} key={i} className='' onMouseEnter={''} />
-          ))}
-        </div> */}
+          <div className='small-images-container'>
+            {image?.map((item, i) => (
+              <img
+                src={urlFor(item)}
+                key={i}
+                className={
+                  i === index ? 'small-image selected-image' : 'small-image'
+                }
+                onMouseEnter={() => setIndex(i)}
+              />
+            ))}
+          </div>
         </div>
 
         <div className='product-detail-desc'>
