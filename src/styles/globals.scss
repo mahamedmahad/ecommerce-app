@@ -482,7 +482,7 @@ span.text-red {
   width: 400px;
   height: 400px;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
 
   &:hover {
     background-color: #f02d34;
@@ -645,6 +645,25 @@ span.text-red {
   background-color: white;
   min-height: 60vh;
 }
+
+// Loading
+.loading {
+  width: 56px;
+  height: 56px;
+  margin: auto;
+  border-radius: 50%;
+  background: conic-gradient(#0000 20%, #f02d34);
+  -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 9px), #000 0);
+  animation: spinner-zp9dbg 1s infinite linear;
+}
+
+@keyframes spinner-zp9dbg {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+// END LOADING
 
 .success,
 .cancel {
