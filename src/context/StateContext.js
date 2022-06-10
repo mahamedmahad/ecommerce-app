@@ -46,6 +46,22 @@ quantity. */
     toast.success(`${qty} ${product.name} added to cart`)
   }
 
+  const onRemoveCartItem = (product) => {
+    foundProduct = cartItems.find((item) => item._id === product._id)
+    const newCartItems = cartItems.filter((item) => item._id !== product._id)
+
+    setTotalPrice(
+      (prevTotalPrice) =>
+        prevTotalPrice - foundProduct.price * foundProduct.quantity
+    )
+
+    setTotalQuantities(
+      (prevTotalQuantities) => prevTotalQuantities - foundProduct.quantity
+    )
+
+    setCartItems(newCartItems)
+  }
+
   const toggleCartItemQuantity = (id, value) => {
     foundProduct = cartItems.find((item) => item._id === id)
     index = cartItems.findIndex((product) => product._id === id)
@@ -53,8 +69,7 @@ quantity. */
     const newCartItems = cartItems.filter((item) => item._id !== id)
 
     /**
-      TODO: Fix the order of the  cart items
-        when the quantity is updated(either by inc or).
+      TODO: #2 Fix the order of the  cart items when the quantity is updated(either by inc or).
      */
     if (value === 'inc') {
       // foundProduct.quantity += 1;
@@ -104,6 +119,7 @@ quantity. */
         loading,
         setLoading,
         toggleCartItemQuantity,
+        onRemoveCartItem,
       }}
     >
       {children}

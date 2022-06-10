@@ -14,6 +14,8 @@ import toast from 'react-hot-toast'
 import { urlFor } from '../../lib/client'
 import { useStateContext } from '../../context/StateContext'
 
+import Loading from '../loading'
+
 const Cart = () => {
   const cartRef = useRef()
 
@@ -23,6 +25,7 @@ const Cart = () => {
     cartItems,
     setShowCart,
     toggleCartItemQuantity,
+    onRemoveCartItem,
   } = useStateContext()
 
   return (
@@ -95,7 +98,14 @@ const Cart = () => {
                       </p>
                     </div>
 
-                    <button type='button' className='remove-item' onClick={''}>
+                    <button
+                      type='button'
+                      className='remove-item'
+                      onClick={() => {
+                        onRemoveCartItem(item)
+                        toast.success(`${item.name} removed from cart`)
+                      }}
+                    >
                       <TiDeleteOutline />
                     </button>
                   </div>
